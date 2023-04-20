@@ -1,0 +1,25 @@
+{
+  "name": "puppeteer-bdd-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx codeceptjs run --features",
+    "test:verbose": "npx codeceptjs run --features --verbose",
+    "test:debug": "npx codeceptjs run --features --debug",
+    "test:steps": "npx codeceptjs run --features --steps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@codeceptjs/configure": "^0.10.0",
+    "@codeceptjs/helper": "^2.0.1",
+    "codeceptjs": "^3.4.1",
+    "lodash": "^4.17.21",
+    "puppeteer": "^19.9.1"
+  },
+  "devDependencies": {
+    "glob": "^10.2.1"
+  }
+}
