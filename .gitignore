@@ -200,6 +200,8 @@ ehthumbs_vista.db
 
 # Dump file
 *.stackdump
+output
+screenshots/diff/**
 
 # Folder config file
 [Dd]esktop.ini

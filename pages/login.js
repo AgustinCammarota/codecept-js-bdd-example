@@ -5,40 +5,46 @@ const AbstractBasePage = require("../utils/AbstractBasePage");
 class Login extends AbstractBasePage {
 
   constructor() {
-    super({
-      root: '#app > div > section.Login__login___3HOEm',
+      super({
+      root: '.LoginView #login-v2 .Loginv2',
       elements: {
-        title: 'div > div.flexboxgrid__col-xs-6___1DhV6.Login__card-box___1pKg0 > div > h2',
-        description: 'div > div.flexboxgrid__col-xs-6___1DhV6.Login__card-box___1pKg0 > div > p',
-        inputUserName: '#login > div:nth-child(1) > input',
-        inputPassword: '#login > div:nth-child(2) > input',
-        buttonSuccess: 'div > div.flexboxgrid__col-xs-6___1DhV6.Login__card-box___1pKg0 > div > nav > button.theme__button___1iKuo.LoginButton__button___1Sd3Q.theme__raised___ONZv6.LoginButton__raised___1fUxJ.theme__primary___2NhN1.LoginButton__primary___38GOe'
+        facebookLogin: '.Loginv2-container .LoginSocial .LoginSocial-facebook a',
+        googleLogin: '.Loginv2-container .LoginSocial .LoginSocial-twitter a',
+        twitterLogin: '.Loginv2-container .LoginSocial .LoginSocial-google a',
+        inputUserName: '.Loginv2-container .LoginWithEmail form .FormInput input[name="email"]',
+        inputPassword: '.Loginv2-container .LoginWithEmail form .FormInput input[name="password"]',
+        buttonSuccess: '.Loginv2-container .LoginWithEmail form button.btn-Green.btn--md'
       },
-      requiredElements: ['title'],
+      requiredElements: ['inputUserName', 'inputPassword', 'buttonSuccess'],
     });
   }
 
   accessLoginPage() {
     I.amOnPage('login');
-    I.waitForElement(this.title);
+    I.waitForElement(this.inputUserName);
+    I.waitForElement(this.inputPassword);
+    I.waitForElement(this.buttonSuccess);
   }
 
   completeUserInformation(username, password) {
     I.waitForEnabled(this.inputPassword);
     I.fillField(this.inputUserName, username);
     I.waitForEnabled(this.inputPassword);
-    I.fillField(this.inputPassword, password);
+    I.fillField(this.inputPassword, secret(password));
     I.waitForClickable(this.buttonSuccess);
     I.click(this.buttonSuccess);
   }
 
   validateScreenElements({item}) {
     switch (item) {
-      case 'title':
-        I.waitForVisible(this.title);
+      case 'facebook login':
+        I.waitForVisible(this.facebookLogin);
         break;
-      case 'description':
-        I.waitForVisible(this.description);
+      case 'google login':
+        I.waitForVisible(this.googleLogin);
+        break;
+      case 'twitter login':
+        I.waitForVisible(this.twitterLogin);
         break;
       case 'input user name':
         I.waitForVisible(this.inputUserName);

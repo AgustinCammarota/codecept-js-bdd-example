@@ -6,19 +6,32 @@ class AbstractPage extends Helper {
   /**
    * @protected
    */
-  _before() {}
+  async _before() {
+    this.helpers['Puppeteer'].page.on('domcontentloaded', async () => {
+      await this.helpers['MockRequestHelper'].startMocking();
+    });
+  }
+
+  async _beforeStep() {
+
+  }
+
+  async _afterStep() {
+  }
+
 
   /**
    * @protected
    */
-  _after() {}
+  async _after() {
+    await this.helpers['MockRequestHelper'].stopMocking();
+  }
 
   async getCurrentContext() {
     const helper = this.helpers['Puppeteer'];
     const url = await helper.page.url();
-    const parts = url.split('/');
-    const lastPart = parts[parts.length - 1];
-    return lastPart;
+    const lastSegment = url.split('/').filter(seg => seg !== '').pop();
+    return lastSegment.replace(/[^a-zA-Z]/g, '');
   }
 
 }

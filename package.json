@@ -7,7 +7,10 @@
     "test": "npx codeceptjs run --features",
     "test:verbose": "npx codeceptjs run --features --verbose",
     "test:debug": "npx codeceptjs run --features --debug",
-    "test:steps": "npx codeceptjs run --features --steps"
+    "test:steps": "npx codeceptjs run --features --steps",
+    "test:reporter": "TESTOMATIO=0ozcc3706jgk npx codeceptjs run",
+    "test:reporter:update": "TESTOMATIO=0ozcc3706jgk npx check-cucumber@`latest` --codeceptjs \"**/*.feature\" --dir features",
+    "test:record": "MOCK_MODE=record npx codeceptjs run --debug"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +19,13 @@
     "@codeceptjs/configure": "^0.10.0",
     "@codeceptjs/helper": "^2.0.1",
     "codeceptjs": "^3.4.1",
+    "codeceptjs-resemblehelper": "^1.9.7",
     "lodash": "^4.17.21",
     "puppeteer": "^19.9.1"
   },
   "devDependencies": {
+    "@codeceptjs/mock-request": "^0.3.1",
+    "@testomatio/reporter": "^0.7.6",
     "glob": "^10.2.1"
   }
 }

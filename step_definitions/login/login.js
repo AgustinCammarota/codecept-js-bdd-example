@@ -1,6 +1,24 @@
 const { I } = inject();
 
-Given('the user accesses the login page', () => {
+Given(/^the user the login with "([^"]*)" and "([^"]*)"$/, async (username, password) => {
+  pageObjects.login.accessLoginPage();
+  I.seeInCurrentUrl('login');
+  pageObjects.login.completeUserInformation(username, password);
+});
+
+Given(/^the user the login with (.+) and (.+)$/, async (username, password) => {
+  pageObjects.login.accessLoginPage();
+  I.seeInCurrentUrl('login');
+  pageObjects.login.completeUserInformation(username, password);
+});
+
+Given(/^the user the login with {string} and {string}$/, async (username, password) => {
+  pageObjects.login.accessLoginPage();
+  I.seeInCurrentUrl('login');
+  pageObjects.login.completeUserInformation(username, password);
+});
+
+Given('the user accesses the login page', async () => {
   pageObjects.login.accessLoginPage();
 });
 
